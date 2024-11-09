@@ -1,0 +1,16 @@
+    prj_crvomigration_img:        
+        build: ./docker/build/
+        ports:
+            - "80:80"
+            - "3306:3306"  
+        volumes:                        
+        - ./docker/build/install:/root/install
+        - ./docker/build/conf/50-server.cnf:/etc/mysql/mariadb.conf.d/50-server.cnf
+        - ./docker/build/conf/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
+        container_name: prj_crvomigration_ctn
+
+
+
+
+
+
