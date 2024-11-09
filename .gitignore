@@ -1,1 +1,5 @@
 docker/build/sql/createdb.sql
+src/env
+src/log
+*.pyc
+src/data/database/crvo.db3

@@ -1,0 +1,1 @@
+mysql -u root < /root/sql/createdb.sql

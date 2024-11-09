@@ -1,0 +1,14 @@
+{    
+    "keep_log": {
+        "time": 1,
+        "unit": "h"
+    },
+    "sqlite":"crvo.db3",
+    "maria": {
+        "host": "localhost",
+        "user": "crvomain",
+        "pssword": "qrsene+666",
+        "database":"crvomain"
+
+    }
+}
