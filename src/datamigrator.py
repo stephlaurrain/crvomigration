@@ -126,8 +126,7 @@ class Migrator:
     
     def do_contact_project(self):
         self.trace(inspect.stack())
-        sqlite_rows = self.sqlite_dbcontext.get_contacts_projets_list()        
-        print(sqlite_rows)
+        sqlite_rows = self.sqlite_dbcontext.get_contacts_projets_list()                
         for r in sqlite_rows:
                 m = self.maria_dbcontext.get_contact_project_obj()               
                 m.contact_id = r.contacts_id
@@ -136,8 +135,7 @@ class Migrator:
 
     def do_decisional(self):
         self.trace(inspect.stack())
-        sqlite_rows = self.sqlite_dbcontext.get_decisionnel_list()        
-        print(sqlite_rows)
+        sqlite_rows = self.sqlite_dbcontext.get_decisionnel_list()                
         for r in sqlite_rows:
                 m = self.maria_dbcontext.get_decisional_obj()               
                 m.id = r.id
@@ -151,7 +149,6 @@ class Migrator:
     def do_sticker(self):
         self.trace(inspect.stack())
         sqlite_rows = self.sqlite_dbcontext.get_etiquettes_list()        
-        print(sqlite_rows)
         for r in sqlite_rows:
                 m = self.maria_dbcontext.get_sticker_obj()               
                 m.id = r.id
@@ -179,7 +176,16 @@ class Migrator:
                 self.maria_dbcontext.add_to_db(m)
 
     def do_picture(self):
-        self.trace(inspect.stack())
+        self.trace(inspect.stack())               
+        sqlite_rows = self.sqlite_dbcontext.get_images_list()        
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_picture_obj()               
+                m.id = r.id
+                m.project_id = r.projets_id
+                m.filename = r.nom_fichier
+                m.color_back = r.couleur_fd
+                m.date_delete = r.date_efface        
+                self.maria_dbcontext.add_to_db(m)
     
     def do_link(self):
         self.trace(inspect.stack())
