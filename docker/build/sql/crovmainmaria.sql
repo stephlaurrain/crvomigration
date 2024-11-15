@@ -140,7 +140,7 @@ CREATE TABLE `note` (
   `project_id` int(11) DEFAULT NULL,
   `date_delete` datetime DEFAULT NULL,
   `is_visua` int(1) DEFAULT NULL,
-  `color_fd` varchar(255) DEFAULT NULL,
+  `color_back` varchar(255) DEFAULT NULL,
   `type_note` varchar(255) DEFAULT NULL,
   `is_rich` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)

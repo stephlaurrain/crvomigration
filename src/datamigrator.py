@@ -203,6 +203,19 @@ class Migrator:
     
     def do_note(self):
         self.trace(inspect.stack())
+        sqlite_rows = self.sqlite_dbcontext.get_notes_list()        
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_note_obj()               
+                m.id = r.id
+                m.project_id = r.projets_id
+                m.title = r.intitule
+                m.contain = r.contenu
+                m.date_delete = r.date_efface
+                m.is_visua = r.is_visua
+                m.color_back = r.couleur_fd
+                m.type_note = r.type_note
+                m.is_rich = r.is_rich
+                self.maria_dbcontext.add_to_db(m)
     
     def do_goal(self):
         self.trace(inspect.stack())

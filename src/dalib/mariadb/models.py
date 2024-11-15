@@ -135,7 +135,7 @@ class Note(Base):
     project_id = Column(Integer)
     date_delete = Column(DateTime)
     is_visua = Column(Integer)
-    color_fd = Column(String(255))
+    color_back = Column(String(255))
     type_note = Column(String(255))
     is_rich = Column(Integer)
 
