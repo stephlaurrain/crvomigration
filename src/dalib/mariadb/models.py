@@ -159,7 +159,7 @@ class Param(Base):
     __tablename__ = 'param'
     node = Column(String(255), primary_key=True)
     key = Column(String(255), primary_key=True)
-    second_key = Column(String(255))
+    second_key = Column(String(255), primary_key=True)
     value = Column(String(255))
 
 
