@@ -14,13 +14,11 @@ class Category(Base):
 
 
 class CategoryObject(Base):
-    __tablename__ = 'category_object'
+    __tablename__ = 'category_object'   
     id = Column(Integer, primary_key=True, autoincrement=True)
-    category_id = Column(Integer, ForeignKey('category.id'))    
-    projet_id = Column(Integer, ForeignKey('project.id'))
-    contact_id = Column(Integer, ForeignKey('contact.id'))
-    # project_id = Column(Integer, ForeignKey('projets.id'), primary_key=True)
-    # contact_id = Column(Integer, ForeignKey('contacts.id'), primary_key=True)
+    category_id = Column(Integer, ForeignKey('category.id'), default=0)    
+    project_id = Column(Integer, ForeignKey('project.id'), default=0)
+    contact_id = Column(Integer, ForeignKey('contact.id'), default=0)
     # project = relationship('Project', back_populates='contact')
     # contact = relationship('Contact', back_populates='project')
 
@@ -64,14 +62,13 @@ class Contact(Base):
 
 
 class ContactProject(Base):
-    __tablename__ = 'contact_project'
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    __tablename__ = 'contact_project'    
     # project_id = Column(Integer)
     # contact_id = Column(Integer, ForeignKey('contact.id'))
-    # projet_id = Column(Integer, ForeignKey('project.id'), primary_key=True)
-    # contact_id = Column(Integer, ForeignKey('contact.id'), primary_key=True)
-    projet_id = Column(Integer, ForeignKey('projet.id'))
-    contact_id = Column(Integer, ForeignKey('contact.id'))
+    projet_id = Column(Integer, ForeignKey('project.id'), primary_key=True)
+    contact_id = Column(Integer, ForeignKey('contact.id'), primary_key=True)
+    # projet_id = Column(Integer, ForeignKey('projet.id'))
+    # contact_id = Column(Integer, ForeignKey('contact.id'))
     # projet = relationship('Projet', back_populates='contact')
     # contact = relationship('Contact', back_populates='project')
 

@@ -32,7 +32,18 @@ class Dbcontext:
 
     def get_categorie_objets_list(self):
         return self.session.query(CategoriesObjets).all()
+#
+    def get_contacts_projets_obj(self):
+        return ContactsProjets()
 
+    def get_contacts_projets_list(self):
+        return self.session.query(ContactsProjets).all()
+
+    """
+    , Contacts, \
+    ContactsProjets, Decisionnel, Etiquettes, Fleches, Images, Liens, \
+    Notes, Objectifs, Params, Projets, Rappels, TypesCategories, TypesProjets, Visuas
+    """
     # disconnection        
     def disconnect(self):   
         self.session.close()

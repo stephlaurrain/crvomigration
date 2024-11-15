@@ -13,11 +13,10 @@ class Categories(Base):
 
 
 class CategoriesObjets(Base):
-    __tablename__ = 'categories_objets'
-    id = Column(Integer, primary_key=True, autoincrement=True)
+    __tablename__ = 'categories_objets'    
     categories_id = Column(Integer, ForeignKey('categories.id'))
-    projets_id = Column(Integer, ForeignKey('projets.id'))
-    contacts_id = Column(Integer, ForeignKey('contacts.id'))
+    projets_id = Column(Integer, ForeignKey('projets.id'), primary_key=True)
+    contacts_id = Column(Integer, ForeignKey('contacts.id'), primary_key=True)
 
 
 class Contacts(Base):
@@ -60,9 +59,9 @@ class Contacts(Base):
 
 class ContactsProjets(Base):
     __tablename__ = 'contacts_projets'
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    projets_id = Column(Integer, ForeignKey('projets.id'))
-    contacts_id = Column(Integer, ForeignKey('contacts.id'))
+
+    projet_id = Column(Integer, ForeignKey('project.id'), primary_key=True)
+    contact_id = Column(Integer, ForeignKey('contact.id'), primary_key=True)
 
 
 class Decisionnel(Base):

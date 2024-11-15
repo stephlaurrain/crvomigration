@@ -8,9 +8,11 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `category_object` (
-  `category_id` int(11) DEFAULT NULL,
-  `project_id` int(11) DEFAULT NULL,
-  `contact_id` int(11) DEFAULT NULL
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) DEFAULT 0,
+  `project_id` int(11) DEFAULT 0,
+  `contact_id` int(11) DEFAULT 0,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `contact` (

@@ -3,3 +3,5 @@ src/env
 src/log
 *.pyc
 src/data/database/crvo.db3
+docker/build/install/reinit.sh
+.gitignore
