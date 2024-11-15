@@ -197,7 +197,7 @@ class Reminder(Base):
     __tablename__ = 'reminder'
     id = Column(Integer, primary_key=True, autoincrement=True)
     reminder = Column(Integer)
-    unity_reminder = Column(String(10))
+    unit_reminder = Column(String(10))
     project_id = Column(Integer)
 
 
