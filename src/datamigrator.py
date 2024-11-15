@@ -309,6 +309,22 @@ class Migrator:
 
     def do_visuas(self):
         self.trace(inspect.stack())
+        sqlite_rows = self.sqlite_dbcontext.get_visuas_list()        
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_visua_obj()               
+                m.position_x = r.position_x
+                m.position_y = r.position_y
+                m.height = r.hauteur
+                m.width = r.largeur
+                m.date_delete = r.date_efface
+                m.project_id = r.projets_id
+                m.note_id = r.notes_id
+                m.link_id = r.liens_id
+                m.contact_id = r.contacts_id
+                m.sticker_id = r.etiquettes_id
+                m.picture_id = r.images_id
+                m.action_id = r.actions_id
+                self.maria_dbcontext.add_to_db(m)
 
     def main(self):
         self.init_main("default")

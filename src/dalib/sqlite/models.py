@@ -220,4 +220,4 @@ class Visuas(Base):
     contacts_id = Column(Integer, ForeignKey('contacts.id'))
     etiquettes_id = Column(Integer, ForeignKey('etiquettes.id'))
     images_id = Column(Integer, ForeignKey('images.id'))
-    actions_id = Column
+    actions_id = Column(Integer, ForeignKey('projets.id'))

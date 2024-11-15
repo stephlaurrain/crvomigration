@@ -73,7 +73,7 @@ class Dbcontext:
     def get_type_project_obj(self):
         return TypeProject()
 
-    def get_visuas_obj(self):
+    def get_visua_obj(self):
         return Visua()
 
     # disconnection        
