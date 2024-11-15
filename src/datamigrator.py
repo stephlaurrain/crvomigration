@@ -237,6 +237,14 @@ class Migrator:
 
     def do_param(self):
         self.trace(inspect.stack())
+        sqlite_rows = self.sqlite_dbcontext.get_params_list()        
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_param_obj()               
+                m.node = r.noeud
+                m.key = r.cle
+                m.second_key = r.souscle
+                m.value = r.valeur
+                self.maria_dbcontext.add_to_db(m)
 
     def do_project(self):
         self.trace(inspect.stack())

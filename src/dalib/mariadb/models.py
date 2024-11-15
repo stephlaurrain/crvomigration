@@ -157,9 +157,8 @@ class Goal(Base):
 
 class Param(Base):
     __tablename__ = 'param'
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    node = Column(String(255))
-    key = Column(String(255))
+    node = Column(String(255), primary_key=True)
+    key = Column(String(255), primary_key=True)
     second_key = Column(String(255))
     value = Column(String(255))
 
