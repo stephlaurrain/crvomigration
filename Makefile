@@ -40,6 +40,9 @@ clnall: stopall drmf dri
 clnright:
 	docker exec  $(REMOTE_ROOT) $(CONTAINER_NAME) bash -c '/root/install/clnright.sh'
 
+reinit:
+	docker exec  $(REMOTE_ROOT) $(CONTAINER_NAME) bash -c '/root/install/reinit.sh'
+
 startbe:
 	docker exec $(CONTAINER_NAME) bash -c "cd /root/backend && yarn start"
 

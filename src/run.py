@@ -1,4 +1,4 @@
-from migrator import Migrator
+from datamigrator import Migrator
 
 migrator = Migrator()
 migrator.main()
