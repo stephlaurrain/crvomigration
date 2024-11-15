@@ -219,6 +219,21 @@ class Migrator:
     
     def do_goal(self):
         self.trace(inspect.stack())
+        sqlite_rows = self.sqlite_dbcontext.get_objectifs_list()        
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_goal_obj()               
+                m.id = r.id
+                m.abscon = r.abscon
+                m.formulation = r.formulation
+                m.measurable = r.mesurable
+                m.resource = r.ressources
+                m.ecological = r.ecologique
+                m.circumstantial = r.circonstancie
+                m.realistic = r.realiste
+                m.exciting = r.excitant
+                m.reward = r.recompense                
+                m.project_id = r.projets_id
+                self.maria_dbcontext.add_to_db(m)
 
     def do_param(self):
         self.trace(inspect.stack())
