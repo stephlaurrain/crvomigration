@@ -21,23 +21,18 @@ class Dbcontext:
         Session = sessionmaker(bind=self.engine)
         self.session = Session()     
 
-    def get_categorie_obj(self):
-        return Categories()
-
     def get_categorie_list(self):
         return self.session.query(Categories).all()
-    
-    def get_categorie_objets_obj(self):
-        return CategoriesObjets()
 
     def get_categorie_objets_list(self):
         return self.session.query(CategoriesObjets).all()
-#
-    def get_contacts_projets_obj(self):
-        return ContactsProjets()
+
+    def get_contacts_list(self):
+        return self.session.query(Contacts).all()
 
     def get_contacts_projets_list(self):
         return self.session.query(ContactsProjets).all()
+
 
     """
     , Contacts, \

@@ -20,16 +20,20 @@ class Dbcontext:
         self.connection = self.engine.connect()
         Session = sessionmaker(bind=self.engine)
         self.session = Session()     
+    
+    def add_to_db(self, obj):        
+        self.session.add(obj)  
+        self.session.commit() 
 
     def get_category_obj(self):
         return Category()
 
-    def add_to_db(self, obj):        
-        self.session.add(obj)  
-        self.session.commit() 
-    
     def get_category_object_obj(self):
         return CategoryObject()
+
+    def get_contact_obj(self):
+        return Contact()
+    
         
 
     # disconnection        

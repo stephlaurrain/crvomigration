@@ -61,23 +61,64 @@ class Migrator:
     def do_category(self):
         sqlite_rows = self.sqlite_dbcontext.get_categorie_list()        
         print(sqlite_rows)
-        for row in sqlite_rows:
+        for r in sqlite_rows:
                 m = self.maria_dbcontext.get_category_obj()
-                m.id = row.id
-                m.title = row.intitule
-                m.color = row.couleur
-                m.code = row.code
-                m.type_category = row.type_categorie                
+                m.id = r.id
+                m.title = r.intitule
+                m.color = r.couleur
+                m.code = r.code
+                m.type_category = r.type_categorie                
                 self.maria_dbcontext.add_to_db(m)
     
     def do_category_object(self):
         sqlite_rows = self.sqlite_dbcontext.get_categorie_objets_list()        
         print(sqlite_rows)
-        for row in sqlite_rows:
+        for r in sqlite_rows:
                 m = self.maria_dbcontext.get_category_object_obj()               
-                m.category_id = row.categories_id
-                m.contact_id = 0 if row.contacts_id == '' else row.contacts_id
-                m.project_id = row.projets_id                
+                m.category_id = r.categories_id
+                m.contact_id = 0 if r.contacts_id == '' else r.contacts_id
+                m.project_id = r.projets_id                
+                self.maria_dbcontext.add_to_db(m)
+    
+    def do_contact(self):
+        sqlite_rows = self.sqlite_dbcontext.get_contacts_list()        
+        print(sqlite_rows)
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_contact_obj()               
+                m.id = r.id
+                m.username = r.pseudo
+                m.name = r.nom
+                m.firstname = r.prenom
+                m.nickname = r.surnom
+                m.address = r.adresse
+                m.zip_code = r.code_postal
+                m.town = r.ville
+                m.address_work = r.adresse_trav
+                m.zip_code_work = r.code_postal_trav
+                m.town_work = r.ville_trav
+                m.code_building = r.code_immeuble
+                m.title = r.titre
+                m.company = r.societe
+                m.email = r.email
+                m.email_work = r.email_trav
+                m.phone = r.tel
+                m.phone_work = r.tel_trav
+                m.phone_cel = r.tel_portable
+                m.phone_cel_work = r.tel_portable_trav
+                m.phone_fax_work = r.tel_fax_trav
+                m.date_birth = r.date_naissance
+                m.date_nameday = r.date_fete
+                m.status = r.statut
+                m.service = r.service
+                m.responsable = r.responsables
+                m.associate = r.collaborateurs
+                m.comment = r.commentaires
+                m.site_web = r.site_web
+                m.site_web_work = r.site_web_trav
+                m.schedules_work = r.horaires_trav
+                m.date_delete = r.date_efface
+                m.is_visua = r.is_visua
+                m.is_synch = r.is_synch
                 self.maria_dbcontext.add_to_db(m)
 
     def main(self):
@@ -87,6 +128,6 @@ class Migrator:
         self.maria_dbcontext = self.get_maria_db_context()        
         
         # self.do_category()
-        self.do_category_object()
-        
+        # self.do_category_object()
+        self.do_contact()
         print("Migration terminée avec succès !")
