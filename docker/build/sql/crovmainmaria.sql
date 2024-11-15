@@ -183,7 +183,7 @@ CREATE TABLE `project` (
   `title` varchar(255) DEFAULT NULL,
   `date_creation` datetime DEFAULT NULL,
   `project_id` int(11) DEFAULT NULL,
-  `lieu` varchar(100) DEFAULT NULL,
+  `place` varchar(100) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
   `zip_code` varchar(5) DEFAULT NULL,

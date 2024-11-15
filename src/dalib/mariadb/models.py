@@ -170,7 +170,7 @@ class Project(Base):
     title = Column(String(255))
     date_creation = Column(DateTime)
     project_id = Column(Integer)
-    lieu = Column(String(100))
+    place = Column(String(100))
     address = Column(String(255))
     city = Column(String(50))
     zip_code = Column(String(5))
