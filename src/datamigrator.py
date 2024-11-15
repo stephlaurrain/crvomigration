@@ -290,10 +290,22 @@ class Migrator:
                 self.maria_dbcontext.add_to_db(m)
 
     def do_type_category(self):
-        self.trace(inspect.stack())
+        self.trace(inspect.stack())         
+        sqlite_rows = self.sqlite_dbcontext.get_types_categories_list()        
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_type_category_obj()               
+                m.type_category = r.type_categorie
+                m.title = r.libelle                
+                self.maria_dbcontext.add_to_db(m)
 
     def do_type_project(self):
         self.trace(inspect.stack())
+        sqlite_rows = self.sqlite_dbcontext.get_types_projets_list()        
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_type_project_obj()               
+                m.type_project = r.type_projet
+                m.title = r.libelle                
+                self.maria_dbcontext.add_to_db(m)
 
     def do_visuas(self):
         self.trace(inspect.stack())
