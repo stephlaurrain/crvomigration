@@ -150,10 +150,34 @@ class Migrator:
     
     def do_sticker(self):
         self.trace(inspect.stack())
+        sqlite_rows = self.sqlite_dbcontext.get_etiquettes_list()        
+        print(sqlite_rows)
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_sticker_obj()               
+                m.id = r.id
+                m.project_id = r.projets_id
+                m.color_back = r.couleur_fd
+                m.color_write = r.couleur_ec
+                m.contain = r.contenu
+                m.font = r.font
+                self.maria_dbcontext.add_to_db(m)
     
     def do_arrow(self):
         self.trace(inspect.stack())
-    
+        sqlite_rows = self.sqlite_dbcontext.get_fleches_list()        
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_arrow_obj()               
+                m.id = r.id
+                m.color = r.couleur
+                m.size = r.size
+                m.visua_dest_id = r.visuas_dest_id
+                m.visua_org_id = r.visuas_org_id
+                m.x_dest = r.x_dest
+                m.y_dest = r.y_dest
+                m.x_org = r.x_org
+                m.y_org = r.y_org                
+                self.maria_dbcontext.add_to_db(m)
+
     def do_picture(self):
         self.trace(inspect.stack())
     

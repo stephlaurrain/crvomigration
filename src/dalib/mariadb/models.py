@@ -97,8 +97,8 @@ class Sticker(Base):
 class Arrow(Base):
     __tablename__ = 'arrow'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    visuas_org_id = Column(Integer)
-    visuas_dest_id = Column(Integer)
+    visua_org_id = Column(Integer)
+    visua_dest_id = Column(Integer)
     color = Column(String(255))
     size = Column(Integer)
     y_org = Column(Integer)

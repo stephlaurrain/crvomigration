@@ -93,8 +93,8 @@ CREATE TABLE `sticker` (
 
 CREATE TABLE `arrow` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `visuas_org_id` int(11) DEFAULT NULL,
-  `visuas_dest_id` int(11) DEFAULT NULL,
+  `visua_org_id` int(11) DEFAULT NULL,
+  `visua_dest_id` int(11) DEFAULT NULL,
   `color` varchar(255) DEFAULT NULL,
   `size` int(11) DEFAULT NULL,
   `y_org` int(11) DEFAULT NULL,
