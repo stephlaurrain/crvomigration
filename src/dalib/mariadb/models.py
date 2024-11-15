@@ -65,7 +65,7 @@ class ContactProject(Base):
     __tablename__ = 'contact_project'    
     # project_id = Column(Integer)
     # contact_id = Column(Integer, ForeignKey('contact.id'))
-    projet_id = Column(Integer, ForeignKey('project.id'), primary_key=True)
+    project_id = Column(Integer, ForeignKey('project.id'), primary_key=True)
     contact_id = Column(Integer, ForeignKey('contact.id'), primary_key=True)
     # projet_id = Column(Integer, ForeignKey('projet.id'))
     # contact_id = Column(Integer, ForeignKey('contact.id'))

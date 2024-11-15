@@ -17,6 +17,7 @@ class Migrator:
 
     def trace(self,stck):                
                 self.log.lg(f"{stck[0].function} ({ stck[0].filename}-{stck[0].lineno})")
+                self.log.lg("###############################################")
 
     @_error_decorator()
     def remove_logs(self):
@@ -41,6 +42,7 @@ class Migrator:
                 raise
 
     def get_sqlite_db_context(self, param):
+            self.trace(inspect.stack())
             dbcontext = dalib.sqlite.dbcontext.Dbcontext(self.log)
             dbpath = f"{self.root_app}{os.path.sep}data{os.path.sep}database{os.path.sep}{param}"
             dbcontext.set_sqlite_dbpath(dbpath)
@@ -48,6 +50,7 @@ class Migrator:
             return dbcontext
     
     def get_maria_db_context(self):
+            self.trace(inspect.stack())
             dbcontext = dalib.mariadb.dbcontext.Dbcontext(self.log)
             root_db = self.jsprms.prms['maria']
             host = root_db['host']
@@ -59,8 +62,8 @@ class Migrator:
             return dbcontext
     
     def do_category(self):
-        sqlite_rows = self.sqlite_dbcontext.get_categorie_list()        
-        print(sqlite_rows)
+        self.trace(inspect.stack())
+        sqlite_rows = self.sqlite_dbcontext.get_categorie_list()                
         for r in sqlite_rows:
                 m = self.maria_dbcontext.get_category_obj()
                 m.id = r.id
@@ -71,8 +74,8 @@ class Migrator:
                 self.maria_dbcontext.add_to_db(m)
     
     def do_category_object(self):
+        self.trace(inspect.stack())
         sqlite_rows = self.sqlite_dbcontext.get_categorie_objets_list()        
-        print(sqlite_rows)
         for r in sqlite_rows:
                 m = self.maria_dbcontext.get_category_object_obj()               
                 m.category_id = r.categories_id
@@ -81,8 +84,8 @@ class Migrator:
                 self.maria_dbcontext.add_to_db(m)
     
     def do_contact(self):
-        sqlite_rows = self.sqlite_dbcontext.get_contacts_list()        
-        print(sqlite_rows)
+        self.trace(inspect.stack())
+        sqlite_rows = self.sqlite_dbcontext.get_contacts_list()                
         for r in sqlite_rows:
                 m = self.maria_dbcontext.get_contact_obj()               
                 m.id = r.id
@@ -122,6 +125,7 @@ class Migrator:
                 self.maria_dbcontext.add_to_db(m)
     
     def do_contact_project(self):
+        self.trace(inspect.stack())
         sqlite_rows = self.sqlite_dbcontext.get_contacts_projets_list()        
         print(sqlite_rows)
         for r in sqlite_rows:
@@ -130,14 +134,69 @@ class Migrator:
                 m.project_id = r.projets_id
                 self.maria_dbcontext.add_to_db(m)
 
+    def do_decisional(self):
+        self.trace(inspect.stack())
+    
+    def do_sticker(self):
+        self.trace(inspect.stack())
+    
+    def do_arrow(self):
+        self.trace(inspect.stack())
+    
+    def do_picture(self):
+        self.trace(inspect.stack())
+    
+    def do_link(self):
+        self.trace(inspect.stack())
+    
+    def do_note(self):
+        self.trace(inspect.stack())
+    
+    def do_goal(self):
+        self.trace(inspect.stack())
+
+    def do_param(self):
+        self.trace(inspect.stack())
+
+    def do_project(self):
+        self.trace(inspect.stack())
+
+    def do_reminder(self):
+        self.trace(inspect.stack())
+
+    def do_type_category(self):
+        self.trace(inspect.stack())
+
+    def do_type_project(self):
+        self.trace(inspect.stack())
+
+    def do_visuas(self):
+        self.trace(inspect.stack())
+
     def main(self):
         self.init_main("default")
         # Connexion à la base de données SQLite
         self.sqlite_dbcontext = self.get_sqlite_db_context(self.jsprms.prms['sqlite_dbpath'])
         self.maria_dbcontext = self.get_maria_db_context()        
         
-        # self.do_category()
-        # self.do_category_object()
-        # self.do_contact()
+        self.do_category()
+        self.do_category_object()
+        self.do_contact()
         self.do_contact_project()
+
+        self.do_decisional()
+        self.do_sticker()
+        self.do_arrow()
+        self.do_picture()
+        self.do_link()
+        self.do_note()
+        self.do_goal()
+        self.do_param()
+        self.do_project()
+        self.do_reminder()
+        self.do_type_category()
+        self.do_type_project()
+        self.do_visuas()
+    
+
         print("Migration terminée avec succès !")
