@@ -136,6 +136,17 @@ class Migrator:
 
     def do_decisional(self):
         self.trace(inspect.stack())
+        sqlite_rows = self.sqlite_dbcontext.get_decisionnel_list()        
+        print(sqlite_rows)
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_decisional_obj()               
+                m.id = r.id
+                m.project_id = r.projets_id
+                m.scoring = r.notation
+                m.solution = r.solution
+                m.title = r.intitule
+                m.type_decisional = r.type_decisionnel
+                self.maria_dbcontext.add_to_db(m)
     
     def do_sticker(self):
         self.trace(inspect.stack())
