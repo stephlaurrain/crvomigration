@@ -189,6 +189,17 @@ class Migrator:
     
     def do_link(self):
         self.trace(inspect.stack())
+        sqlite_rows = self.sqlite_dbcontext.get_liens_list()        
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_link_obj()               
+                m.id = r.id
+                m.project_id = r.projets_id
+                m.title = r.titre
+                m.path = r.chemin
+                m.is_ged = 0 if r.is_ged == '' else r.is_ged
+                m.date_delete = r.date_efface
+                m.is_visua = r.is_visua                
+                self.maria_dbcontext.add_to_db(m)
     
     def do_note(self):
         self.trace(inspect.stack())
