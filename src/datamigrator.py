@@ -92,10 +92,10 @@ class Migrator:
                 m.nickname = r.surnom
                 m.address = r.adresse
                 m.zip_code = r.code_postal
-                m.town = r.ville
+                m.city = r.ville
                 m.address_work = r.adresse_trav
                 m.zip_code_work = r.code_postal_trav
-                m.town_work = r.ville_trav
+                m.city_work = r.ville_trav
                 m.code_building = r.code_immeuble
                 m.title = r.titre
                 m.company = r.societe
@@ -120,6 +120,15 @@ class Migrator:
                 m.is_visua = r.is_visua
                 m.is_synch = r.is_synch
                 self.maria_dbcontext.add_to_db(m)
+    
+    def do_contact_project(self):
+        sqlite_rows = self.sqlite_dbcontext.get_contacts_projets_list()        
+        print(sqlite_rows)
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_contact_project_obj()               
+                m.contact_id = r.contacts_id
+                m.project_id = r.projets_id
+                self.maria_dbcontext.add_to_db(m)
 
     def main(self):
         self.init_main("default")
@@ -129,5 +138,6 @@ class Migrator:
         
         # self.do_category()
         # self.do_category_object()
-        self.do_contact()
+        # self.do_contact()
+        self.do_contact_project()
         print("Migration terminée avec succès !")

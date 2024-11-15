@@ -60,8 +60,8 @@ class Contacts(Base):
 class ContactsProjets(Base):
     __tablename__ = 'contacts_projets'
 
-    projet_id = Column(Integer, ForeignKey('project.id'), primary_key=True)
-    contact_id = Column(Integer, ForeignKey('contact.id'), primary_key=True)
+    projets_id = Column(Integer, ForeignKey('projets.id'), primary_key=True)
+    contacts_id = Column(Integer, ForeignKey('contacts.id'), primary_key=True)
 
 
 class Decisionnel(Base):

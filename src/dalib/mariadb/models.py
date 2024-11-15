@@ -32,10 +32,10 @@ class Contact(Base):
     nickname = Column(String(50))
     address = Column(Text)
     zip_code = Column(String(5))
-    town = Column(String(50))
+    city = Column(String(50))
     address_work = Column(Text)
     zip_code_work = Column(String(50))
-    town_work = Column(String(50))
+    city_work = Column(String(50))
     code_building = Column(String(50))
     title = Column(String(50))
     company = Column(String(50))
@@ -155,8 +155,8 @@ class Goal(Base):
     project_id = Column(Integer)
 
 
-class Params(Base):
-    __tablename__ = 'params'
+class Param(Base):
+    __tablename__ = 'param'
     id = Column(Integer, primary_key=True, autoincrement=True)
     node = Column(String(255))
     key = Column(String(255))
@@ -173,7 +173,7 @@ class Project(Base):
     project_id = Column(Integer)
     lieu = Column(String(100))
     address = Column(String(255))
-    town = Column(String(50))
+    city = Column(String(50))
     zip_code = Column(String(5))
     color = Column(String(255))
     price_projected = Column(Float(16, 2))
@@ -214,8 +214,8 @@ class TypeProject(Base):
     title = Column(String(50))
 
 
-class Visuas(Base):
-    __tablename__ = 'visuas'
+class Visua(Base):
+    __tablename__ = 'visua'
     id = Column(Integer, primary_key=True, autoincrement=True)
     position_x = Column(Integer)
     position_y = Column(Integer)

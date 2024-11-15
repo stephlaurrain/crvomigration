@@ -4,8 +4,8 @@ import utils.date_utils as date_utils
 from sqlalchemy import and_, case, create_engine, func
 from sqlalchemy.orm import sessionmaker
 from dalib.mariadb.models import Category, CategoryObject, Contact, ContactProject, \
-    Decisional, Sticker, Arrow, Picture, Link, Note, Goal, Params, Project, \
-    Reminder, TypeCategory, TypeProject, Visuas 
+    Decisional, Sticker, Arrow, Picture, Link, Note, Goal, Param, Project, \
+    Reminder, TypeCategory, TypeProject, Visua 
 
 
 class Dbcontext:
@@ -34,7 +34,47 @@ class Dbcontext:
     def get_contact_obj(self):
         return Contact()
     
-        
+    def get_contact_project_obj(self):
+        return ContactProject()
+    
+    def get_decisional_obj(self):
+        return Decisional()
+    
+    def get_sticker_obj(self):
+        return Sticker()
+    
+    def get_arrow_obj(self):
+        return Arrow()
+    
+    def get_picture_obj(self):
+        return Picture()
+    
+    def get_link_obj(self):
+        return Link()
+    
+    def get_note_obj(self):
+        return Note()
+    
+    def get_goal_obj(self):
+        return Goal()
+
+    def get_param_obj(self):
+        return Param()
+
+    def get_project_obj(self):
+        return Project()
+
+    def get_reminder_obj(self):
+        return Reminder()
+
+    def get_type_category_obj(self):
+        return TypeCategory()
+
+    def get_type_project_obj(self):
+        return TypeProject()
+
+    def get_visuas_obj(self):
+        return Visua()
 
     # disconnection        
     def disconnect(self):   
