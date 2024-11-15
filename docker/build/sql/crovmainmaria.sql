@@ -213,7 +213,7 @@ CREATE TABLE `project` (
 CREATE TABLE `reminder` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `reminder` int(11) DEFAULT NULL,
-  `unity_reminder` varchar(10) DEFAULT NULL,
+  `unit_reminder` varchar(10) DEFAULT NULL,
   `project_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

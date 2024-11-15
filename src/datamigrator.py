@@ -280,6 +280,14 @@ class Migrator:
 
     def do_reminder(self):
         self.trace(inspect.stack())
+        sqlite_rows = self.sqlite_dbcontext.get_rappels_list()        
+        for r in sqlite_rows:
+                m = self.maria_dbcontext.get_reminder_obj()               
+                m.id = r.id
+                m.reminder = r.rappel
+                m.unit_reminder = r.unite_rappel
+                m.project_id = r.projets_id                
+                self.maria_dbcontext.add_to_db(m)
 
     def do_type_category(self):
         self.trace(inspect.stack())
