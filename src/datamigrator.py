@@ -354,6 +354,6 @@ class Migrator:
         self.do_type_project()
         self.do_visuas()
         constraint_script = f"{self.root_app}{os.path.sep}data{os.path.sep}sql{os.path.sep}addconstaints.sql"
-        # self.maria_dbcontext.execute_script_from_file(constraint_script)
+        self.maria_dbcontext.execute_script_from_file(constraint_script)
 
         print("Migration terminée avec succès !")
