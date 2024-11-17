@@ -250,33 +250,36 @@ class Migrator:
         self.trace(inspect.stack())
         sqlite_rows = self.sqlite_dbcontext.get_projets_list()        
         for r in sqlite_rows:
-                m = self.maria_dbcontext.get_project_obj()               
-                m.type_projet = r.type_projet
-                m.title = r.intitule
-                m.date_creation 
-                m.project_id = r.projets_id
-                m.place = r.lieu
-                m.address = r.adresse
-                m.city = r.ville
-                m.zip_code = r.code_postal
-                m.color = r.couleur
-                m.price_projected = None if r.prix_prevu == '' else r.prix_prevu
-                m.priority = 0 if r.priorite == '' else r.priorite
-                m.description = r.description
-                m.date_delete = r.date_efface
-                m.is_done = r.is_effectue
-                m.font = r.font
-                m.color_visua = r.couleur_visua
-                m.date_end = r.date_fin
-                m.date_begin = r.date_debut
-                m.price =  None if r.prix == '' else r.prix
-                m.note = r.note
-                m.time = r.temps
-                m.counter = r.compteur
-                m.date_done = r.date_effectue
-                m.is_visua = r.is_visua
-                m.is_synch = r.is_synch                
-                self.maria_dbcontext.add_to_db(m)
+                if r.type_projet not in ('', None):
+                # if r.type_projet not in ('rrrr', 'r'):
+                        m = self.maria_dbcontext.get_project_obj()
+                        m.id = r.id            
+                        m.type_projet = r.type_projet
+                        m.title = r.intitule
+                        m.date_creation 
+                        m.project_id = None if r.projets_id == 0 else r.projets_id
+                        m.place = r.lieu
+                        m.address = r.adresse
+                        m.city = r.ville
+                        m.zip_code = r.code_postal
+                        m.color = r.couleur
+                        m.price_projected = None if r.prix_prevu == '' else r.prix_prevu
+                        m.priority = 0 if r.priorite == '' else r.priorite
+                        m.description = r.description
+                        m.date_delete = r.date_efface
+                        m.is_done = r.is_effectue
+                        m.font = r.font
+                        m.color_visua = r.couleur_visua
+                        m.date_end = r.date_fin
+                        m.date_begin = r.date_debut
+                        m.price =  None if r.prix == '' else r.prix
+                        m.note = r.note
+                        m.time = r.temps
+                        m.counter = r.compteur
+                        m.date_done = r.date_effectue
+                        m.is_visua = r.is_visua
+                        m.is_synch = r.is_synch                
+                        self.maria_dbcontext.add_to_db(m)
 
     def do_reminder(self):
         self.trace(inspect.stack())
@@ -346,10 +349,11 @@ class Migrator:
         self.do_goal()
         self.do_param()
         self.do_project()
-        self.do_reminder()
-        self.do_type_category()
-        self.do_type_project()
-        self.do_visuas()
-    
+        # self.do_reminder()
+        # self.do_type_category()
+        # self.do_type_project()
+        # self.do_visuas()
+        constraint_script = f"{self.root_app}{os.path.sep}data{os.path.sep}sql{os.path.sep}addconstaints.sql"
+        self.maria_dbcontext.execute_script_from_file(constraint_script)
 
         print("Migration terminée avec succès !")
