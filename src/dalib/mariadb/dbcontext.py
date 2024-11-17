@@ -1,7 +1,7 @@
 from datetime import datetime
 
 import utils.date_utils as date_utils
-from sqlalchemy import and_, case, create_engine, func
+from sqlalchemy import and_, case, create_engine, func, text
 from sqlalchemy.orm import sessionmaker
 from dalib.mariadb.models import Category, CategoryObject, Contact, ContactProject, \
     Decisional, Sticker, Arrow, Picture, Link, Note, Goal, Param, Project, \
@@ -20,7 +20,21 @@ class Dbcontext:
         self.connection = self.engine.connect()
         Session = sessionmaker(bind=self.engine)
         self.session = Session()     
+
+    def execute_script(self, sql_script):
+        with self.engine.connect() as connection:
+            connection.execute(text(sql_script))
+            connection.commit() 
+
+    def execute_script_from_file(self, filepath):
+        with open(filepath, 'r', encoding='utf-8') as file:
+            sql_script = file.read()
+            
+        for statement in sql_script.split(';'): 
+            if statement.strip(): 
+                self.execute_script(statement)            
     
+
     def add_to_db(self, obj):        
         self.session.add(obj)  
         self.session.commit() 
@@ -75,7 +89,7 @@ class Dbcontext:
 
     def get_visua_obj(self):
         return Visua()
-
+    
     # disconnection        
     def disconnect(self):   
         self.session.close()
