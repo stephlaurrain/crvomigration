@@ -9,7 +9,7 @@ class Category(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     title = Column(String(255))
     color = Column(String(50))
-    type_category = Column(String(1))
+    code_type_category = Column(String(1))
     code = Column(String(5))
 
 
@@ -158,7 +158,7 @@ class Goal(Base):
 class Param(Base):
     __tablename__ = 'param'
     node = Column(String(255), primary_key=True)
-    key = Column(String(255), primary_key=True)
+    first_key = Column(String(255), primary_key=True)
     second_key = Column(String(255), primary_key=True)
     value = Column(String(255))
 
@@ -166,7 +166,7 @@ class Param(Base):
 class Project(Base):
     __tablename__ = 'project'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    type_projet = Column(String(1))
+    code_type_project = Column(String(1))
     title = Column(String(255))
     date_creation = Column(DateTime)
     project_id = Column(Integer)
@@ -203,13 +203,13 @@ class Reminder(Base):
 
 class TypeCategory(Base):
     __tablename__ = 'type_category'
-    type_category = Column(String(3), primary_key=True)
+    code = Column(String(1), primary_key=True)
     title = Column(String(50))
 
 
 class TypeProject(Base):
     __tablename__ = 'type_project'
-    type_project = Column(String(2), primary_key=True)
+    code = Column(String(1), primary_key=True)
     title = Column(String(50))
 
 

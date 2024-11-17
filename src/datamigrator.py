@@ -70,7 +70,7 @@ class Migrator:
                 m.title = r.intitule
                 m.color = r.couleur
                 m.code = r.code
-                m.type_category = r.type_categorie                
+                m.code_type_category = r.type_categorie                
                 self.maria_dbcontext.add_to_db(m)
     
     def do_category_object(self):
@@ -241,7 +241,7 @@ class Migrator:
         for r in sqlite_rows:
                 m = self.maria_dbcontext.get_param_obj()               
                 m.node = r.noeud
-                m.key = r.cle
+                m.first_key = r.cle
                 m.second_key = r.souscle
                 m.value = r.valeur
                 self.maria_dbcontext.add_to_db(m)
@@ -297,7 +297,7 @@ class Migrator:
         sqlite_rows = self.sqlite_dbcontext.get_types_categories_list()        
         for r in sqlite_rows:
                 m = self.maria_dbcontext.get_type_category_obj()               
-                m.type_category = r.type_categorie
+                m.code = r.type_categorie
                 m.title = r.libelle                
                 self.maria_dbcontext.add_to_db(m)
 
@@ -306,7 +306,7 @@ class Migrator:
         sqlite_rows = self.sqlite_dbcontext.get_types_projets_list()        
         for r in sqlite_rows:
                 m = self.maria_dbcontext.get_type_project_obj()               
-                m.type_project = r.type_projet
+                m.code = r.type_projet
                 m.title = r.libelle                
                 self.maria_dbcontext.add_to_db(m)
 
@@ -349,11 +349,11 @@ class Migrator:
         self.do_goal()
         self.do_param()
         self.do_project()
-        # self.do_reminder()
-        # self.do_type_category()
-        # self.do_type_project()
-        # self.do_visuas()
+        self.do_reminder()
+        self.do_type_category()
+        self.do_type_project()
+        self.do_visuas()
         constraint_script = f"{self.root_app}{os.path.sep}data{os.path.sep}sql{os.path.sep}addconstaints.sql"
-        self.maria_dbcontext.execute_script_from_file(constraint_script)
+        # self.maria_dbcontext.execute_script_from_file(constraint_script)
 
         print("Migration terminée avec succès !")

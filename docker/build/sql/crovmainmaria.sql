@@ -2,7 +2,7 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `color` varchar(50) DEFAULT NULL,
-  `type_category` varchar(1) DEFAULT NULL,
+  `code_type_category` varchar(1) DEFAULT NULL,
   `code` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -58,7 +58,8 @@ CREATE TABLE `contact` (
 
 CREATE TABLE `contact_project` (
   `project_id` int(11) DEFAULT NULL,
-  `contact_id` int(11) DEFAULT NULL
+  `contact_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`project_id`, `contact_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -168,10 +169,12 @@ CREATE TABLE `goal` (
 -- crvomain.params definition
 
 CREATE TABLE `param` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `node` varchar(255) DEFAULT NULL,
-  `key` varchar(255) DEFAULT NULL,
+  `first_key` varchar(255) DEFAULT NULL,
   `second_key` varchar(255) DEFAULT NULL,
-  `value` varchar(255) DEFAULT NULL
+  `value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -179,7 +182,7 @@ CREATE TABLE `param` (
 
 CREATE TABLE `project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type_projet` varchar(1) DEFAULT NULL,
+  `code_type_project` varchar(1) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `date_creation` datetime DEFAULT NULL,
   `project_id` int(11) DEFAULT NULL,
@@ -207,7 +210,6 @@ CREATE TABLE `project` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 -- crvomain.rappels definition
 
 CREATE TABLE `reminder` (
@@ -222,16 +224,18 @@ CREATE TABLE `reminder` (
 -- crvomain.types_categories definition
 
 CREATE TABLE `type_category` (
-  `type_category` varchar(3) DEFAULT NULL,
-  `title` varchar(50) DEFAULT NULL
+  `code` varchar(1) DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+   PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 -- crvomain.types_project definition
 
 CREATE TABLE `type_project` (
-  `type_project` varchar(2) DEFAULT NULL,
-  `title` varchar(50) DEFAULT NULL
+  `code` varchar(1) DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+   PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
