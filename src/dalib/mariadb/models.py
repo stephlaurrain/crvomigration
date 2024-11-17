@@ -47,6 +47,7 @@ class ContactWork(Base):
     responsable = Column(Text)
     associate = Column(Text)
     date_delete = Column(DateTime)
+    contact_id = Column(Integer, ForeignKey('contact.id'), primary_key=True)
 
 class Address(Base):
     __tablename__ = 'address'

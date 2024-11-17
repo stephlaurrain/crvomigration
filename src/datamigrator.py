@@ -119,6 +119,16 @@ class Migrator:
         ca.address_id = adw.id
         self.maria_dbcontext.add_to_db(ca)
 
+    def do_contact_work_specs(self, contact_id, r):
+        cw = self.maria_dbcontext.get_contact_work_obj()
+        cw.associate = r.collaborateurs
+        cw.company = r.societe
+        cw.service = r.service
+        cw.responsable = r.responsables
+        cw.contact_id = contact_id
+        cw.status = r.statut
+        self.maria_dbcontext.add_to_db(cw)
+
     def do_contact(self):
         self.trace(inspect.stack())
         sqlite_rows = self.sqlite_dbcontext.get_contacts_list()                
@@ -138,6 +148,9 @@ class Migrator:
                 m.is_visua = r.is_visua
                 m.is_synch = r.is_synch
                 self.maria_dbcontext.add_to_db(m)
+                # specific work data
+                if any([r.collaborateurs, r.societe, r.service, r.responsables, r.statut]):
+                        self.do_contact_work_specs(m.id, r)
                 # personal address
                 self.do_contact_personal(m.id, r)
                 # work address

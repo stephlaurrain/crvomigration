@@ -39,6 +39,7 @@ CREATE TABLE `contact_work` (
   `responsable` text DEFAULT NULL,
   `associate` text DEFAULT NULL,  
   `date_delete` datetime DEFAULT NULL,
+  `contact_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
