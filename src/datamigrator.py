@@ -284,13 +284,12 @@ class Migrator:
         self.trace(inspect.stack())
         sqlite_rows = self.sqlite_dbcontext.get_projets_list()        
         for r in sqlite_rows:
-                if r.type_projet not in ('', None):
-                # if r.type_projet not in ('rrrr', 'r'):
+                if r.type_projet not in ('', None) and r.intitule not in ('', None):
                         m = self.maria_dbcontext.get_project_obj()
                         m.id = r.id            
-                        m.type_projet = r.type_projet
+                        m.code_type_project = r.type_projet
                         m.title = r.intitule
-                        m.date_creation 
+                        m.date_creation = r.date_creation
                         m.project_id = None if r.projets_id == 0 else r.projets_id
                         m.place = r.lieu
                         m.address = r.adresse
