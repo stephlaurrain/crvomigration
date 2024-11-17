@@ -76,7 +76,8 @@ CREATE TABLE `type_address` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `type_address` (code,title) VALUES
-	 ('P','personal'),
+	 ('O','personal'),
+   ('P','project'),
 	 ('W','work');
 
 CREATE TABLE `contact_project` (
@@ -208,11 +209,7 @@ CREATE TABLE `project` (
   `code_type_project` varchar(1) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `date_creation` datetime DEFAULT NULL,
-  `project_id` int(11) DEFAULT NULL,
-  `place` varchar(100) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `city` varchar(50) DEFAULT NULL,
-  `zip_code` varchar(5) DEFAULT NULL,
+  `project_id` int(11) DEFAULT NULL,  
   `color` varchar(255) DEFAULT NULL,
   `price_projected` float(16,2) DEFAULT NULL,
   `priority` int(11) DEFAULT NULL,
@@ -230,6 +227,7 @@ CREATE TABLE `project` (
   `date_done` datetime DEFAULT NULL,
   `is_visua` int(1) DEFAULT NULL,
   `is_synch` int(1) DEFAULT NULL,
+  `address_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

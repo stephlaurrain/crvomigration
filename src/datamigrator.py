@@ -94,7 +94,7 @@ class Migrator:
         ad.phone_cel = r.tel_portable
         ad.email = r.email
         ad.web_site = r.site_web        
-        ad.code_type_address = 'P'
+        ad.code_type_address = 'O'
         self.maria_dbcontext.add_to_db(ad)        
         ca = self.maria_dbcontext.get_contact_address_obj()
         ca.contact_id = contact_id
@@ -291,10 +291,6 @@ class Migrator:
                         m.title = r.intitule
                         m.date_creation = r.date_creation
                         m.project_id = None if r.projets_id == 0 else r.projets_id
-                        m.place = r.lieu
-                        m.address = r.adresse
-                        m.city = r.ville
-                        m.zip_code = r.code_postal
                         m.color = r.couleur
                         m.price_projected = None if r.prix_prevu == '' else r.prix_prevu
                         m.priority = 0 if r.priorite == '' else r.priorite
@@ -311,7 +307,14 @@ class Migrator:
                         m.counter = r.compteur
                         m.date_done = r.date_effectue
                         m.is_visua = r.is_visua
-                        m.is_synch = r.is_synch                
+                        m.is_synch = r.is_synch
+                        if any([r.adresse, r.code_postal, r.ville]):
+                                ad = self.maria_dbcontext.get_address_obj()   
+                                ad.address = r.adresse
+                                ad.zip_code = r.code_postal
+                                ad.city = r.ville
+                                self.maria_dbcontext.add_to_db(ad)    
+                                m.address_id = ad.id              
                         self.maria_dbcontext.add_to_db(m)
 
     def do_reminder(self):
