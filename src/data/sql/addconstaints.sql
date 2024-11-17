@@ -5,11 +5,11 @@ update picture set project_id = null where project_id = 0;
 update reminder set project_id = null where project_id = 0;
 update sticker set project_id = null where project_id = 0;
 
-ALTER TABLE crvomain.param ADD CONSTRAINT param_unique UNIQUE KEY (node, first_key,second_key);
+ALTER TABLE param ADD CONSTRAINT param_unique UNIQUE KEY (node, first_key,second_key);
 
 ALTER TABLE project ADD CONSTRAINT project_project_FK FOREIGN KEY (project_id) REFERENCES project(id) ON DELETE CASCADE;
 
-ALTER TABLE crvomain.project ADD CONSTRAINT project_type_project_FK FOREIGN KEY (code_type_project) REFERENCES crvomain.type_project(code);
+ALTER TABLE project ADD CONSTRAINT project_type_project_FK FOREIGN KEY (code_type_project) REFERENCES type_project(code);
 
 ALTER TABLE category_object ADD CONSTRAINT category_object_category_FK FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -46,3 +46,11 @@ ALTER TABLE picture ADD CONSTRAINT picture_project_FK FOREIGN KEY (project_id) R
 ALTER TABLE reminder ADD CONSTRAINT reminder_project_FK FOREIGN KEY (project_id) REFERENCES project(id);
 
 ALTER TABLE sticker ADD CONSTRAINT sticker_project_FK FOREIGN KEY (project_id) REFERENCES project(id);
+
+ALTER TABLE contact_address ADD CONSTRAINT contact_address_contact_FK FOREIGN KEY (contact_id) REFERENCES contact(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE contact_address ADD CONSTRAINT contact_address_address_FK FOREIGN KEY (address_id) REFERENCES address(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE contact_work ADD CONSTRAINT contact_work_contact_FK FOREIGN KEY (contact_id) REFERENCES contact(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE address ADD CONSTRAINT address_type_address_FK FOREIGN KEY (code_type_address) REFERENCES type_address(code);
