@@ -87,42 +87,25 @@ class Migrator:
         self.trace(inspect.stack())
         sqlite_rows = self.sqlite_dbcontext.get_contacts_list()                
         for r in sqlite_rows:
+                # contacts
                 m = self.maria_dbcontext.get_contact_obj()               
                 m.id = r.id
                 m.username = r.pseudo
                 m.name = r.nom
                 m.firstname = r.prenom
                 m.nickname = r.surnom
-                m.address = r.adresse
-                m.zip_code = r.code_postal
-                m.city = r.ville
-                m.address_work = r.adresse_trav
-                m.zip_code_work = r.code_postal_trav
-                m.city_work = r.ville_trav
-                m.code_building = r.code_immeuble
                 m.title = r.titre
-                m.company = r.societe
-                m.email = r.email
-                m.email_work = r.email_trav
-                m.phone = r.tel
-                m.phone_work = r.tel_trav
-                m.phone_cel = r.tel_portable
-                m.phone_cel_work = r.tel_portable_trav
-                m.phone_fax_work = r.tel_fax_trav
                 m.date_birth = r.date_naissance
                 m.date_nameday = r.date_fete
-                m.status = r.statut
-                m.service = r.service
-                m.responsable = r.responsables
-                m.associate = r.collaborateurs
                 m.comment = r.commentaires
-                m.site_web = r.site_web
-                m.site_web_work = r.site_web_trav
-                m.schedules_work = r.horaires_trav
                 m.date_delete = r.date_efface
                 m.is_visua = r.is_visua
                 m.is_synch = r.is_synch
                 self.maria_dbcontext.add_to_db(m)
+                
+                
+                
+        
     
     def do_contact_project(self):
         self.trace(inspect.stack())

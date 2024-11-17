@@ -21,40 +21,58 @@ CREATE TABLE `contact` (
   `name` varchar(150) DEFAULT NULL,
   `firstname` varchar(50) DEFAULT NULL,
   `nickname` varchar(50) DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `zip_code` varchar(5) DEFAULT NULL,
-  `city` varchar(50) DEFAULT NULL,
-  `address_work` text DEFAULT NULL,
-  `zip_code_work` varchar(50) DEFAULT NULL,
-  `city_work` varchar(50) DEFAULT NULL,
-  `code_building` varchar(50) DEFAULT NULL,
   `title` varchar(50) DEFAULT NULL,
-  `company` varchar(50) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `email_work` varchar(50) DEFAULT NULL,
-  `phone` varchar(50) DEFAULT NULL,
-  `phone_work` varchar(50) DEFAULT NULL,
-  `phone_cel` varchar(50) DEFAULT NULL,
-  `phone_cel_work` varchar(50) DEFAULT NULL,
-  `phone_fax_work` varchar(50) DEFAULT NULL,
   `date_birth` datetime DEFAULT NULL,
   `date_nameday` datetime DEFAULT NULL,
+  `comment` text DEFAULT NULL,
+  `date_delete` datetime DEFAULT NULL,
+  `is_visua` int(1) DEFAULT NULL,
+  `is_synch` int(1) DEFAULT NULL,  
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `contact_work` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `company` varchar(50) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `service` varchar(50) DEFAULT NULL,
   `responsable` text DEFAULT NULL,
-  `associate` text DEFAULT NULL,
-  `comment` text DEFAULT NULL,
-  `site_web` varchar(250) DEFAULT NULL,
-  `site_web_work` varchar(50) DEFAULT NULL,
-  `schedules_work` varchar(50) DEFAULT NULL,
+  `associate` text DEFAULT NULL,  
   `date_delete` datetime DEFAULT NULL,
-  `is_visua` int(1) DEFAULT NULL,
-  `is_synch` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- crvomain.contacts_project definition
+
+CREATE TABLE `address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,  
+  `address` text DEFAULT NULL,
+  `complement` text DEFAULT NULL,
+  `zip_code` varchar(5) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,    
+  `code_building` varchar(50) DEFAULT NULL,  
+  `email` varchar(50) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `phone_cel` varchar(20) DEFAULT NULL,
+  `web_site` varchar(250) DEFAULT NULL,
+  `schedule` varchar(250) DEFAULT NULL,
+  `date_delete` datetime DEFAULT NULL,
+  `code_type_address` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `contact_address` (  
+  `contact_id` int(11) DEFAULT NULL,
+  `address_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`contact_id`, `address_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `type_address` (
+  `code` varchar(1) DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+   PRIMARY KEY (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 CREATE TABLE `contact_project` (
   `project_id` int(11) DEFAULT NULL,

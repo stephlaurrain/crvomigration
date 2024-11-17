@@ -3,7 +3,8 @@ from datetime import datetime
 import utils.date_utils as date_utils
 from sqlalchemy import and_, case, create_engine, func, text
 from sqlalchemy.orm import sessionmaker
-from dalib.mariadb.models import Category, CategoryObject, Contact, ContactProject, \
+from dalib.mariadb.models import Category, CategoryObject, Contact, ContactWork, \
+    Address, ContactAddress, TypeAddress, ContactProject, \
     Decisional, Sticker, Arrow, Picture, Link, Note, Goal, Param, Project, \
     Reminder, TypeCategory, TypeProject, Visua 
 
@@ -47,6 +48,18 @@ class Dbcontext:
 
     def get_contact_obj(self):
         return Contact()
+
+    def get_contact_work_obj(self):
+        return ContactWork()
+    
+    def get_address_obj(self):
+        return Address()
+    
+    def get_contact_address_obj(self):
+        return ContactAddress()
+
+    def get_type_address_obj(self):
+        return TypeAddress()
     
     def get_contact_project_obj(self):
         return ContactProject()
