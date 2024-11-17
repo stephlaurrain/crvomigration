@@ -46,14 +46,15 @@ CREATE TABLE `contact_work` (
 
 CREATE TABLE `address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,  
+  `title` varchar(100) DEFAULT NULL,  
   `address` text DEFAULT NULL,
   `complement` text DEFAULT NULL,
   `zip_code` varchar(5) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,    
   `code_building` varchar(50) DEFAULT NULL,  
   `email` varchar(50) DEFAULT NULL,
-  `phone` varchar(20) DEFAULT NULL,
-  `phone_cel` varchar(20) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
+  `phone_cel` varchar(50) DEFAULT NULL,
   `web_site` varchar(250) DEFAULT NULL,
   `schedule` varchar(250) DEFAULT NULL,
   `date_delete` datetime DEFAULT NULL,
@@ -73,6 +74,9 @@ CREATE TABLE `type_address` (
    PRIMARY KEY (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+INSERT INTO `type_address` (code,title) VALUES
+	 ('P','personal'),
+	 ('W','work');
 
 CREATE TABLE `contact_project` (
   `project_id` int(11) DEFAULT NULL,

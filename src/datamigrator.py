@@ -82,7 +82,43 @@ class Migrator:
                 m.contact_id = 0 if r.contacts_id == '' else r.contacts_id
                 m.project_id = r.projets_id                
                 self.maria_dbcontext.add_to_db(m)
-    
+
+    def do_contact_personal(self, contact_id, r):
+        # first address
+        ad = self.maria_dbcontext.get_address_obj()   
+        ad.address = r.adresse
+        ad.zip_code = r.code_postal
+        ad.city = r.ville
+        ad.code_building
+        ad.phone = r.tel
+        ad.phone_cel = r.tel_portable
+        ad.email = r.email
+        ad.web_site = r.site_web        
+        ad.code_type_address = 'P'
+        self.maria_dbcontext.add_to_db(ad)        
+        ca = self.maria_dbcontext.get_contact_address_obj()
+        ca.contact_id = contact_id
+        ca.address_id = ad.id
+        self.maria_dbcontext.add_to_db(ca)
+
+    def do_contact_work(self, contact_id, r):
+        adw = self.maria_dbcontext.get_address_obj() 
+        adw.title = r.societe
+        adw.address = r.adresse_trav
+        adw.zip_code = r.code_postal_trav
+        adw.city = r.ville_trav
+        adw.phone = r.tel_trav     
+        adw.phone_cel = r.tel_portable_trav
+        adw.email = r.email_trav
+        adw.web_site = r.site_web
+        adw.schedule = r.horaires_trav
+        adw.code_type_address = 'W'
+        self.maria_dbcontext.add_to_db(adw)
+        ca = self.maria_dbcontext.get_contact_address_obj()
+        ca.contact_id = contact_id
+        ca.address_id = adw.id
+        self.maria_dbcontext.add_to_db(ca)
+
     def do_contact(self):
         self.trace(inspect.stack())
         sqlite_rows = self.sqlite_dbcontext.get_contacts_list()                
@@ -102,9 +138,11 @@ class Migrator:
                 m.is_visua = r.is_visua
                 m.is_synch = r.is_synch
                 self.maria_dbcontext.add_to_db(m)
-                
-                
-                
+                # personal address
+                self.do_contact_personal(m.id, r)
+                # work address
+                if any([r.adresse_trav, r.email_trav, r.tel_trav, r.tel_portable_trav]):
+                        self.do_contact_work(m.id, r)
         
     
     def do_contact_project(self):

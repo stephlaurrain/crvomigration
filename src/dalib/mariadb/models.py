@@ -51,14 +51,15 @@ class ContactWork(Base):
 class Address(Base):
     __tablename__ = 'address'
     id = Column(Integer, primary_key=True, autoincrement=True)
+    title = Column(String(100))
     address = Column(Text)
     complement = Column(Text)
     zip_code = Column(String(5))
     city = Column(String(50))
     code_building = Column(String(50))
     email = Column(String(50))    
-    phone = Column(String(20))    
-    phone_cel = Column(String(20))
+    phone = Column(String(50))    
+    phone_cel = Column(String(50))
     web_site = Column(String(250))    
     schedule = Column(String(250))
     date_delete = Column(DateTime)
@@ -66,8 +67,8 @@ class Address(Base):
 
 class ContactAddress(Base):
     __tablename__ = 'contact_address'    
-    project_id = Column(Integer, ForeignKey('project.id'), primary_key=True)
     contact_id = Column(Integer, ForeignKey('contact.id'), primary_key=True)
+    address_id = Column(Integer, ForeignKey('address.id'), primary_key=True)
 
 class TypeAddress(Base):
     __tablename__ = 'type_address'
